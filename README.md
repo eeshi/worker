@@ -12,5 +12,5 @@ Download and install from [phantomjs binaries](http://phantomjs.org/download.htm
 Install from npm
 
 ```bash
-	npm install -g casperjs
+npm install -g casperjs
 ```
