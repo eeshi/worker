@@ -1,5 +1,5 @@
 var casper = require('casper')
-	, secret = require('./secret')
+  , secret = require('./secret')
 
 casper.create()
 
