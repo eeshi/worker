@@ -14,3 +14,8 @@ Install from npm
 ```bash
 npm install -g casperjs
 ```
+## Running locally
+
+```bash
+casperjs crawler.js
+```
