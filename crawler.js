@@ -12,5 +12,4 @@ var casper = require('casper').create({
 
 siteA.crawl()
 
-
 casper.run()
