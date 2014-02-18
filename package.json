@@ -1,0 +1,26 @@
+{
+  "name": "workers",
+  "version": "0.0.1",
+  "description": "eeshi workers to scrap sites",
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/eeshi/Workers.git"
+  },
+  "keywords": [
+    "workers",
+    "jobs",
+    "crawl",
+    "scraping",
+    "eeshi"
+  ],
+  "author": "eeshi",
+  "license": "AGPL-3.0",
+  "readmeFilename": "README.md",
+  "gitHead": "7c9e2ba72ac83102f474dbd65907c9ba637fa068",
+  "dependencies": {
+    "async": "~0.2.10",
+    "request": "~2.33.0",
+    "cheerio": "~0.13.1"
+  }
+}
