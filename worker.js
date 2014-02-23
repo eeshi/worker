@@ -11,7 +11,7 @@ var prot = process.env.PROTOCOL
   , concurrency = 8
   , jobs = []
 
-  , url = prot + '://' + site + section;
+  , url = format('%s://%s%s', prot, site, section);
    
 
 function getJobs(url) {
@@ -26,12 +26,11 @@ function getJobs(url) {
     console.log($('title').text().trim().slice(0,42));
 
     jobs.push($(selector).map(function() {
-        console.log($(this).attr('href'))
         return $(this).attr('href')
       })
     );
 
-  var newUrl = prot + '://' + site + $(nextPageSelector).attr('href')
+  var newUrl = format('%s://%s%s', prot, site, $(nextPageSelector).attr('href'))
   if(newUrl) 
     getJobs(newUrl) // Call recursively until last page
 
