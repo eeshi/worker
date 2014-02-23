@@ -3,11 +3,11 @@ var request = require('request')
   , async = require('async')
   , format = require('util').format;
 
-var opcionEmpleo = 'http://www.opcionempleo.com.ve/'
-  , section = 'empleos-informatica-telecomunicaciones.html'
+var site = process.env.SITE 
+  , section = process.env.SECTION
   , concurrency = 8;
 
-request(opcionEmpleo + section, function(err, res, body) {
+request(site + section, function(err, res, body) {
   
   if (err) throw err;
   
@@ -19,7 +19,7 @@ request(opcionEmpleo + section, function(err, res, body) {
   
   async.eachLimit(jobs, concurrency, function(job, next) {
   
-    var jobPost = request(opcionEmpleo + job, function(err, res, body) {
+    var jobPost = request(site + job, function(err, res, body) {
       
       if (err) throw err;
       
