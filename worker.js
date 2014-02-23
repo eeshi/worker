@@ -6,8 +6,8 @@ var request = require('request')
 var prot = process.env.PROTOCOL
   , site = process.env.SITE 
   , section = process.env.SECTION
-  , selector = process.env.JOBSELECTOR
-  , nextPageSelector = process.env.NEXTPAGE 
+  , selector = process.env.JOB_SELECTOR
+  , nextPageSelector = process.env.NEXT_PAGE 
   , concurrency = 8
   , jobs = []
 
