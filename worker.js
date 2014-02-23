@@ -26,20 +26,21 @@ function getJobs(url) {
     console.log($('title').text().trim().slice(0,42));
 
     jobs.push($(selector).map(function() {
-        return $(this).attr('href')
+        return $(this).attr('href');
       })
     );
 
-  var newUrl = format('%s://%s%s', prot, site, $(nextPageSelector).attr('href'))
-  if(newUrl) 
-    getJobs(newUrl) // Call recursively until last page
+  var newUrl = format('%s://%s%s', prot, site, $(nextPageSelector).attr('href'));
 
-  return
+  if(newUrl) 
+    getJobs(newUrl); // Call recursively until last page
+
+  return;
 
   });
 }
 
-getJobs(url)
+getJobs(url);
 
  // async.eachLimit(jobs, concurrency, function(job, next) {
   
