@@ -3,33 +3,57 @@ var request = require('request')
   , async = require('async')
   , format = require('util').format;
 
-var site = process.env.SITE 
+var prot = process.env.PROTOCOL
+  , site = process.env.SITE 
   , section = process.env.SECTION
-  , concurrency = 8;
+  , selector = process.env.JOBSELECTOR
+  , nextPageSelector = process.env.NEXTPAGE 
+  , concurrency = 8
+  , jobs = []
 
-request(site + section, function(err, res, body) {
+  , url = prot + '://' + site + section;
+   
+
+function getJobs(url) {
   
-  if (err) throw err;
-  
-  var $ = cheerio.load(body);
-  
-  var jobs = $('div.job p a.title_compact').map(function() {
-    return $(this).attr('href');
+  request(url, function(err, res, body) {
+    
+    if (err) throw err;
+
+    var $ = cheerio.load(body);
+    
+    console.log();
+    console.log($('title').text().trim().slice(0,42));
+
+    jobs.push($(selector).map(function() {
+        console.log($(this).attr('href'))
+        return $(this).attr('href')
+      })
+    );
+
+  var newUrl = prot + '://' + site + $(nextPageSelector).attr('href')
+  if(newUrl) 
+    getJobs(newUrl) // Call recursively until last page
+
+  return
+
   });
+}
+
+getJobs(url)
+
+ // async.eachLimit(jobs, concurrency, function(job, next) {
   
-  async.eachLimit(jobs, concurrency, function(job, next) {
-  
-    var jobPost = request(site + job, function(err, res, body) {
+ //    var jobPost = request(site + job, function(err, res, body) {
       
-      if (err) throw err;
+ //      if (err) throw err;
       
-      var $ = cheerio.load(body);
+ //      var $ = cheerio.load(body);
       
-      // Log job post title, trim and limit to 42 characters to avoid console SPAM.
-      console.log();
-      console.log($('title').text().trim().slice(0,42));
+ //      // Log job post title, trim and limit to 42 characters to avoid console SPAM.
+ //      console.log();
+ //      console.log($('title').text().trim().slice(0,42));
       
-      next();
-    });
-  });
-});
+ //      next();
+ //    });
+ //  });
