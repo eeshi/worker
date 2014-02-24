@@ -35,3 +35,6 @@ node_modules
 
 ## Foreman local environment variables
 .env
+
+## Test files
+test
