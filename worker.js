@@ -1,59 +1,44 @@
-var request = require('request')
-  , cheerio = require('cheerio')
-  , async = require('async')
-  , format = require('util').format;
+var request = require('request');
+var cheerio = require('cheerio');
+var async = require('async');
+var format = require('util').format;
 
-var prot = process.env.PROTOCOL
-  , site = process.env.SITE 
-  , section = process.env.SECTION
-  , selector = process.env.JOB_SELECTOR
-  , nextPageSelector = process.env.NEXT_PAGE 
-  , concurrency = 8
-  , jobs = []
+var prot = process.env.PROTOCOL;
+var site = process.env.SITE; 
+var section = process.env.SECTION;
+var selector = process.env.JOB_SELECTOR;
+var nextPageSelector = process.env.NEXT_PAGE;
+var concurrency = 8;
+var jobs = [];
 
-  , url = format('%s://%s%s', prot, site, section);
+var url = format('%s://%s%s', prot, site, section);
    
 
 function getJobs(url) {
   
-  request(url, function(err, res, body) {
+  request(url, function servePage(err, res, body) {
     
     if (err) throw err;
 
     var $ = cheerio.load(body);
     
-    console.log();
-    console.log($('title').text().trim().slice(0,42));
+    var shortTitle = $('title').text().trim().slice(0,42);
+    console.log(shortTitle);
 
     jobs.push($(selector).map(function() {
         return $(this).attr('href');
       })
     );
 
-  var newUrl = format('%s://%s%s', prot, site, $(nextPageSelector).attr('href'));
+    var section = $(nextPageSelector).attr('href');
+    var newUrl = format('%s://%s%s', prot, site, section);
 
-  if(newUrl) 
-    getJobs(newUrl); // Call recursively until last page
+    // Call recursively until last page
+    if(newUrl) 
+      getJobs(newUrl); 
 
-  return;
-
+    return;
   });
 }
 
 getJobs(url);
-
- // async.eachLimit(jobs, concurrency, function(job, next) {
-  
- //    var jobPost = request(site + job, function(err, res, body) {
-      
- //      if (err) throw err;
-      
- //      var $ = cheerio.load(body);
-      
- //      // Log job post title, trim and limit to 42 characters to avoid console SPAM.
- //      console.log();
- //      console.log($('title').text().trim().slice(0,42));
-      
- //      next();
- //    });
- //  });
