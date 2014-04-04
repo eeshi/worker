@@ -1,7 +1,7 @@
 {
   "name": "workers",
   "version": "0.0.1",
-  "description": "eeshi workers to scrap sites",
+  "description": "eeshi workers to scrape sites",
   "main": "app.js",
   "repository": {
     "type": "git",

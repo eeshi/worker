@@ -13,7 +13,7 @@ var model = {
   }
 }
 
-api.scrap(url, model, {}, function(err, data) {
+api.scrape(url, model, {}, function(err, data) {
 
   if (err) {
     return console.error(err);
