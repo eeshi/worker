@@ -12,13 +12,6 @@ api.scrape(url, model, {}, function(err, data) {
     return console.error(err);
   }
 
-  var jobLinks = [];
-
-  for (var i = data.jobLinks.length - 1; i >= 0; i--) {
-    var link = data.jobLinks[i].attr('href');
-    jobLinks.push(link);
-  };
-
-  return console.log(jobLinks);
+  return console.log(data);
 
 });
