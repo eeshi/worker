@@ -1,16 +1,9 @@
 var api = require('./api.js');
 
-var url = 'http://localhost.geeklist.com:4000/communities';
+var url = 'http://www.empleate.com/venezuela/ofertas/empleos/';
 var model = {
-  navigation: '#navigation',
-  navigation2: {
-    selector: '#navigation2',
-    required: true
-  },
-  communities: {
-    selector: '.community-name',
-    required: true
-  }
+  jobLinks: '.line > .linea_hover > .col1 > .col1',
+
 }
 
 api.scrape(url, model, {}, function(err, data) {
@@ -19,6 +12,13 @@ api.scrape(url, model, {}, function(err, data) {
     return console.error(err);
   }
 
-  return console.log(data);
+  var jobLinks = [];
+
+  for (var i = data.jobLinks.length - 1; i >= 0; i--) {
+    var link = data.jobLinks[i].attr('href');
+    jobLinks.push(link);
+  };
+
+  return console.log(jobLinks);
 
 });
