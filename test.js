@@ -10,7 +10,12 @@ url = 'http://www.computrabajo.com.ve/bt-ofrd-dismetro-0.htm';
 model = {
   pageTitle: 'title',
   title: 'td[align=center] > font[size=2] > b',
-  desc: 'td[colspan=2] > p[align=justify] font[size=2]'
+  desc: 'td[colspan=2] > p[align=justify] font[size=2]',
+  links: {
+    selector: 'a[href="/"]',
+    get: 'href',
+    multi: true
+  }
 };
 options = {
   requestOptions: {
