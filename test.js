@@ -1,20 +1,51 @@
 var api = require('./api.js');
+var fs = require('fs');
+var url;
+var model;
+var options;
 
-var url = 'http://localhost.geeklist.com:4000/communities';
-var model = {
-  jobLinks: {
-    selector: '.community-name',
-    get: 'href'
+// Computrabajo example
+
+url = 'http://www.computrabajo.com.ve/bt-ofrd-dismetro-0.htm';
+model = {
+  pageTitle: 'title',
+  title: 'td[align=center] > font[size=2] > b',
+  desc: 'td[colspan=2] > p[align=justify] font[size=2]'
+};
+options = {
+  requestOptions: {
+    encoding: 'binary'
   },
-  title: 'title'
+  cheerioOptions: {}
 };
 
-api.scrape(url, model, {}, function(err, data) {
+
+// Bumeran example
+
+// url = 'http://www.bumeran.com.ve/empleos/ingeniero-civil-de-campo-y-tsu-en-construccion-civil-muros-y-o-pantallas-atirantadas-proyectos-y-construcciones-sabpi-c.a.-1001707776.html';
+// model = {
+//   pageTitle: 'title',
+//   title: 'h2.h2',
+//   desc: '#contenido_aviso'
+// };
+// options = {};
+
+
+
+api.scrape(url, model, options, function(err, data) {
 
   if (err) {
     return console.error(err);
   }
 
-  return console.log(data);
+  console.log(data);
+
+  fs.writeFile("./lastRun.json", JSON.stringify(data, null, 2), "utf8", function(err) {
+      if(err) {
+          console.log(err);
+      } else {
+          console.log("Output saved to lastRun.json");
+      }
+  });
 
 });
