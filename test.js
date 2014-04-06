@@ -1,10 +1,13 @@
 var api = require('./api.js');
 
-var url = 'http://www.empleate.com/venezuela/ofertas/empleos/';
+var url = 'http://localhost.geeklist.com:4000/communities';
 var model = {
-  jobLinks: '.line > .linea_hover > .col1 > .col1',
-
-}
+  jobLinks: {
+    selector: '.community-name',
+    get: 'href'
+  },
+  title: 'title'
+};
 
 api.scrape(url, model, {}, function(err, data) {
 
