@@ -22,7 +22,8 @@
     "async": "~0.2.10",
     "request": "~2.33.0",
     "cheerio": "~0.14.0",
-    "dnode": "^1.2.0"
+    "dnode": "^1.2.0",
+    "mongodb": "^1.4.0"
   },
   "engines": {
     "node": "0.10.x"
