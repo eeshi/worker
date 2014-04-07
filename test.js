@@ -1,3 +1,4 @@
+var MongoClient = require('mongodb').MongoClient;
 var api = require('./api.js');
 var fs = require('fs');
 var url;
@@ -43,14 +44,35 @@ api.scrape(url, model, options, function(err, data) {
     return console.error(err);
   }
 
+  data.url = url;
+
   console.log(data);
 
-  fs.writeFile("./lastRun.json", JSON.stringify(data, null, 2), "utf8", function(err) {
+  mongoDB(function(db) {
+    
+    var jobPosts = db.collection('jobPosts');
+    jobPosts.insert(data, function(err, docs) {
+      
       if(err) {
-          console.log(err);
-      } else {
-          console.log("Output saved to lastRun.json");
+        console.log(err);
       }
+      db.close();
+    });
+
   });
 
 });
+
+
+function mongoDB(callback) {
+  
+  MongoClient.connect(process.env.DATABASE_URL, function(err, db) {
+    if(err) {
+      console.log(err);
+    }
+
+    callback(db);
+
+  });
+
+}
