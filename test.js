@@ -26,7 +26,7 @@ function crawlLinks(item, i, arr) {
 
     mongoDB(function(db) {
 
-      var jobsLinks = db.collection('jobsLinks');
+      var jobsLinks = db.collection('jobLinks');
       
       var query = { _id: url };
       var newData = { $set: data }
