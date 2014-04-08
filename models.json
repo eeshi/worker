@@ -8,6 +8,7 @@
         "jobLinks": {
           "selector": "tr > td > font[size][face] b > a",
           "get": "href",
+          "prefix": "/",
           "required": true,
           "multi": true
         },
