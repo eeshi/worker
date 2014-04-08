@@ -30,9 +30,8 @@ function crawlLinks(item, i, arr) {
       
       var query = { _id: url };
       var newData = { $set: data }
-      var options = { upsert: true };
 
-      jobsLinks.update(query, newData, options, function(err) {
+      jobsLinks.save(query, newData, function(err) {
 
         if(err) {
           console.log(err);
