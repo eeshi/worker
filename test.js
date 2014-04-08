@@ -50,6 +50,9 @@ function crawlLinks(item, i, arr) {
 
     });
   });
+
+  return null;
+
 }
 
 function mongoDB(callback) {
