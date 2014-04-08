@@ -1,0 +1,84 @@
+[ {
+    "sourceId": "computrabajove",
+    "prot": "http://",
+    "baseUrl": "www.computrabajo.com.ve",
+    "linksList": {
+      "startUrl": "/bt-ofrlistado.htm?Bqd=%2BSC003",
+      "model": {
+        "jobLinks": {
+          "selector": "font[size=4] > b > b > a",
+          "get": "href",
+          "required": true,
+          "multi": true
+        },
+        "nextPageLink": {
+          "selector": "tr > td[align=center] > font[size=2] > a:last-of-type",
+          "get": "href",
+          "multi": false
+        }
+      },
+      "options": {
+        "requestOptions": {
+          "encoding": "binary"
+        }
+      }
+    },
+    "jobPost": {
+      "model": {
+        "pageTitle": {
+          "selector": "title",
+          "required": true,
+          "multi": false
+        },
+        "jobVacant": {
+          "selector": "tr > td[colspan=2][align!=center] > font[size=2] > b",
+          "required": true,
+          "multi": false
+        },
+        "companyName": {
+          "selector": "td[align=center] > font[size=2] > b",
+          "required": true,
+          "multi": false
+        },
+        "companyUrl": {
+          "selector": "tr > td + td > font[size=2] > a",
+          "get": "href",
+          "required": true,
+          "multi": false
+        },
+        "desc": {
+          "selector": "td[colspan=2] > p[align=justify] font[size=2]",
+          "required": true,
+          "multi": false
+        }
+      },
+      "options": {
+        "requestOptions": {
+          "encoding": "binary"
+        }
+      }
+    }
+  },
+  {
+    "sourceId": "bumeranve",
+    "prot": "http://",
+    "baseUrl": "www.bumeran.com.ve",
+    "linksList": {
+      "startUrl": "/empleos-areas-2617-2618-2608-2620-2625-26-2619-2621-2622-2623-2624-108-34-105-107-2626.html",
+      "model": {
+        "jobLinks": {
+          "selector": "a.aviso_box.aviso_listado",
+          "get": "href",
+          "required": true,
+          "multi": true
+        },
+        "nextPageLink": {
+          "selector": ".paginador.box > a.btn.primary:last-child",
+          "get": "href",
+          "multi": false
+        }
+      },
+      "options": {}
+    }
+  }
+]
