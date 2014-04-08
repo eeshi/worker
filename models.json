@@ -5,14 +5,14 @@
     "linksList": {
       "startUrl": "/bt-ofrlistado.htm?Bqd=%2BSC003",
       "model": {
-        "jobLinks": {
+        "jobsLinks": {
           "selector": "tr > td > font[size][face] b > a",
           "get": "href",
           "required": true,
           "multi": true
         },
         "nextPageLink": {
-          "selector": "tr > td[align=center] > font[size=2] > a:last-of-type",
+          "selector": "tr > td > font > a:contains(Siguiente)",
           "get": "href",
           "prefix": "/",
           "multi": false
@@ -67,7 +67,7 @@
     "linksList": {
       "startUrl": "/empleos-areas-2617-2618-2608-2620-2625-26-2619-2621-2622-2623-2624-108-34-105-107-2626.html",
       "model": {
-        "jobLinks": {
+        "jobsLinks": {
           "selector": "a.aviso_box.aviso_listado",
           "get": "href",
           "required": true,
