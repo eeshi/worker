@@ -20,14 +20,19 @@ function crawlLinks(item, i, arr) {
       return console.error(err);
     }
 
-    data.url = url;
+    data._id = url;
 
     console.log(data);
 
     mongoDB(function(db) {
 
       var jobsLinks = db.collection('jobsLinks');
-      jobsLinks.insert(data, function(err, docs) {
+      
+      var query = { _id: url };
+      var newData = { $set: data }
+      var options = { upsert: true };
+
+      jobsLinks.update(query, newData, options, function(err) {
 
         if(err) {
           console.log(err);
@@ -39,7 +44,6 @@ function crawlLinks(item, i, arr) {
           item.linksList.startUrl = data.nextPageLink;
           return crawlLinks(item, i, arr);
         }
-
 
       });
 
