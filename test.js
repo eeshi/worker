@@ -26,8 +26,8 @@ function crawlLinks(item, i, arr) {
 
     mongoDB(function(db) {
 
-      var jobLinks = db.collection('jobLinks');
-      jobLinks.insert(data, function(err, docs) {
+      var jobsLinks = db.collection('jobsLinks');
+      jobsLinks.insert(data, function(err, docs) {
 
         if(err) {
           console.log(err);
