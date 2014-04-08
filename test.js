@@ -29,7 +29,10 @@ function crawlLinks(item, i, arr) {
       data.jobLinks.forEach(function(link, i, arr) {
 
         jobLinks.save(
-          { _id: item.prot + item.baseUrl + link },
+          {
+            _id: item.prot + item.baseUrl + link,
+            sourceId: item.sourceId
+          },
           function(err) {
 
           if(err) {
