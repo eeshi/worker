@@ -24,11 +24,11 @@ function crawlLinks(item, i, arr) {
 
     mongoDB(function(db) {
 
-      var jobsLinks = db.collection('jobsLinks');
+      var jobLinks = db.collection('jobLinks');
 
-      data.jobsLinks.forEach(function(item, i, arr) {
+      data.jobLinks.forEach(function(item, i, arr) {
 
-        jobsLinks.save({ _id: item }, function(err) {
+        jobLinks.save({ _id: item }, function(err) {
 
           if(err) {
             db.close();
