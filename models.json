@@ -6,7 +6,7 @@
       "startUrl": "/bt-ofrlistado.htm?Bqd=%2BSC003",
       "model": {
         "jobLinks": {
-          "selector": "font[size=4] > b > b > a",
+          "selector": "tr > td > font[size][face] b > a",
           "get": "href",
           "required": true,
           "multi": true
