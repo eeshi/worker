@@ -44,6 +44,8 @@ function crawlLinks(item, i, arr) {
       if (data.nextPageLink) {
         item.linksList.startUrl = data.nextPageLink;
         return crawlLinks(item, i, arr);
+      } else {
+        return db.close();
       }
 
     });
