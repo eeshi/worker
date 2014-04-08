@@ -12,8 +12,6 @@ function crawlLinks(item, i, arr) {
   var model = item.linksList.model;
   var options = item.linksList.options;
 
-
-
   api.scrape(url, model, options, function(err, data) {
 
     if (err) {
@@ -26,28 +24,29 @@ function crawlLinks(item, i, arr) {
 
     mongoDB(function(db) {
 
-      var jobsLinks = db.collection('jobLinks');
-  
-      jobsLinks.save(data, function(err) {
+      var jobsLinks = db.collection('jobsLinks');
 
-        if(err) {
-          console.log(err);
-        }
+      data.jobsLinks.forEach(function(item, i, arr) {
 
-        db.close();
+        jobsLinks.save({ _id: item }, function(err) {
 
-        if (data.nextPageLink) {
-          item.linksList.startUrl = data.nextPageLink;
-          return crawlLinks(item, i, arr);
-        }
+          if(err) {
+            db.close();
+            return console.log(err);
+          }
+
+        });
 
       });
 
-    });
+      if (data.nextPageLink) {
+        item.linksList.startUrl = data.nextPageLink;
+        return crawlLinks(item, i, arr);
+      }
 
+    });
   });
 }
-
 
 function mongoDB(callback) {
 
