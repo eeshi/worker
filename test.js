@@ -26,9 +26,11 @@ function crawlLinks(item, i, arr) {
 
       var jobLinks = db.collection('jobLinks');
 
-      data.jobLinks.forEach(function(item, i, arr) {
+      data.jobLinks.forEach(function(link, i, arr) {
 
-        jobLinks.save({ _id: item }, function(err) {
+        jobLinks.save(
+          { _id: item.prot + item.baseUrl + link },
+          function(err) {
 
           if(err) {
             db.close();
