@@ -36,6 +36,8 @@ function scrapeModel(model) {
 
         data.url = jobLink._id;
 
+        data.sourceId = model.sourceId;
+
         storePage(data);
 
       });
