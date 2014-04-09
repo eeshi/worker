@@ -1,22 +1,33 @@
-[ {
-    "sourceId": "computrabajove",
-    "prot": "http://",
+[
+  {
     "baseUrl": "www.computrabajo.com.ve",
-    "linksList": {
-      "startUrl": "/bt-ofrlistado.htm?Bqd=%2BSC003",
+    "jobPost": {
       "model": {
-        "jobLinks": {
-          "selector": "tr > td > font[size][face] b > a",
-          "get": "href",
-          "prefix": "/",
+        "companyName": {
+          "multi": false,
           "required": true,
-          "multi": true
+          "selector": "td[align=center] > font[size=2] > b"
         },
-        "nextPageLink": {
-          "selector": "tr > td > font > a:contains(Siguiente)",
+        "companyUrl": {
           "get": "href",
-          "prefix": "/",
-          "multi": false
+          "multi": false,
+          "required": true,
+          "selector": "tr > td + td > font[size=2] > a"
+        },
+        "desc": {
+          "multi": false,
+          "required": true,
+          "selector": "td[colspan=2] > p[align=justify] font[size=2]"
+        },
+        "jobVacant": {
+          "multi": false,
+          "required": true,
+          "selector": "tr > td[colspan=2][align!=center] > font[size=2] > b"
+        },
+        "pageTitle": {
+          "multi": false,
+          "required": true,
+          "selector": "title"
         }
       },
       "options": {
@@ -25,62 +36,52 @@
         }
       }
     },
-    "jobPost": {
+    "linksList": {
       "model": {
-        "pageTitle": {
-          "selector": "title",
-          "required": true,
-          "multi": false
-        },
-        "jobVacant": {
-          "selector": "tr > td[colspan=2][align!=center] > font[size=2] > b",
-          "required": true,
-          "multi": false
-        },
-        "companyName": {
-          "selector": "td[align=center] > font[size=2] > b",
-          "required": true,
-          "multi": false
-        },
-        "companyUrl": {
-          "selector": "tr > td + td > font[size=2] > a",
+        "jobLinks": {
           "get": "href",
+          "multi": true,
+          "prefix": "/",
           "required": true,
-          "multi": false
+          "selector": "tr > td > font[size][face] b > a"
         },
-        "desc": {
-          "selector": "td[colspan=2] > p[align=justify] font[size=2]",
-          "required": true,
-          "multi": false
+        "nextPageLink": {
+          "get": "href",
+          "multi": false,
+          "prefix": "/",
+          "selector": "tr > td > font > a:contains(Siguiente)"
         }
       },
       "options": {
         "requestOptions": {
           "encoding": "binary"
         }
-      }
-    }
+      },
+      "startUrl": "/bt-ofrlistado.htm?Bqd=%2BSC003"
+    },
+    "prot": "http://",
+    "sourceId": "computrabajove"
   },
   {
-    "sourceId": "bumeranve",
-    "prot": "http://",
     "baseUrl": "www.bumeran.com.ve",
     "linksList": {
-      "startUrl": "/empleos-areas-2617-2618-2608-2620-2625-26-2619-2621-2622-2623-2624-108-34-105-107-2626.html",
       "model": {
         "jobLinks": {
-          "selector": "a.aviso_box.aviso_listado",
           "get": "href",
+          "multi": true,
           "required": true,
-          "multi": true
+          "selector": "a.aviso_box.aviso_listado"
         },
         "nextPageLink": {
-          "selector": ".paginador.box > a.btn.primary:last-child",
           "get": "href",
-          "multi": false
+          "multi": false,
+          "selector": ".paginador.box > a.btn.primary:last-child"
         }
       },
-      "options": {}
-    }
+      "options": {},
+      "startUrl": "/empleos-areas-2617-2618-2608-2620-2625-26-2619-2621-2622-2623-2624-108-34-105-107-2626.html"
+    },
+    "prot": "http://",
+    "sourceId": "bumeranve"
   }
 ]
