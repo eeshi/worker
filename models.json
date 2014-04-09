@@ -5,13 +5,12 @@
       "model": {
         "companyName": {
           "multi": false,
-          "required": true,
           "selector": "td[align=center] > font[size=2] > b"
         },
         "companyUrl": {
           "get": "href",
           "multi": false,
-          "required": true,
+          "prefix": "/",
           "selector": "tr > td + td > font[size=2] > a"
         },
         "desc": {
@@ -64,6 +63,35 @@
   },
   {
     "baseUrl": "www.bumeran.com.ve",
+    "jobPost": {
+      "model": {
+        "companyName": {
+          "multi": false,
+          "selector": ".span-two-thirds > .box > h3 > a"
+        },
+        "companyUrl": {
+          "get": "href",
+          "multi": false,
+          "selector": ".span-two-thirds > .box > h3 > a"
+        },
+        "desc": {
+          "multi": false,
+          "required": true,
+          "selector": "#contenido_aviso"
+        },
+        "jobVacant": {
+          "multi": false,
+          "required": true,
+          "selector": ".breadcrumb > .crumb > h1"
+        },
+        "pageTitle": {
+          "multi": false,
+          "required": true,
+          "selector": "title"
+        }
+      },
+      "options": {}
+    },
     "linksList": {
       "model": {
         "jobLinks": {
