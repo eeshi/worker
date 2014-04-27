@@ -38,6 +38,11 @@ function scrapeModel(model) {
 
         data.sourceId = model.sourceId;
 
+        if (data.appendDesc) {
+          data.desc = data.desc + ' ' + data.appendDesc;
+          delete data.appendDesc;
+        }
+
         storePage(data);
 
       });
