@@ -84,6 +84,10 @@
           "required": true,
           "selector": ".breadcrumb > .crumb > h1"
         },
+        "area": {
+          "multi": false,
+          "selector": "div.breadcrumb > .crumb:nth-last-child(even) > a"
+          },
         "pageTitle": {
           "multi": false,
           "required": true,
@@ -111,5 +115,68 @@
     },
     "prot": "http://",
     "sourceId": "bumeranve"
+  },
+  {
+    "baseUrl": "www.empleate.com",
+    "jobPost": {
+      "model": {
+        "companyName": {
+          "multi": false,
+          "selector": "p.top-heading a"
+        },
+        "companyUrl": {
+          "get": "href",
+          "multi": false,
+          "selector": "p.top-heading a"
+        },
+        "desc": {
+          "multi": false,
+          "required": true,
+          "selector": "table + table + strong.title + p"
+        },
+        "appendDesc": {
+          "multi": false,
+          "selector": "table + table + strong.title + p + table + strong.title + p"
+        },
+        "jobVacant": {
+          "multi": false,
+          "required": true,
+          "selector": "h1.heading"
+        },
+        "area": {
+          "multi": false,
+          "selector": "table + table.carreras-table tr + tr > td + td"
+        },
+        "pageTitle": {
+          "multi": false,
+          "required": true,
+          "selector": "title"
+        }
+      },
+      "options": {}
+    },
+    "linksList": {
+      "model": {
+        "jobLinks": {
+          "get": "href",
+          "multi": true,
+          "required": true,
+          "selector": ".linea_hover.cover > div.col1 > a.col1"
+        },
+        "nextPageLink": {
+          "get": "href",
+          "multi": false,
+          "selector": ".next-btn"
+        }
+      },
+      "options": {
+        "requestOptions": {
+          "jar": true
+        }
+      },
+      "startUrl": "/venezuela/ofertas/empleos_encontrados/?buscador[pais]=140&buscador[area][]=11&buscador[area][]=14"
+    },
+    "prot": "http://",
+    "sourceId": "empleateve"
   }
 ]
