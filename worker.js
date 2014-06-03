@@ -1,6 +1,8 @@
 var rpc = require('axon-rpc');
 var axon = require('axon');
 
+var api = require('./api');
+
 var PORT = process.env['PORT'];
 var status = true; // Available
 
@@ -12,5 +14,19 @@ rep.bind(PORT);
 worker.expose('check status', function(callback) {
 
   callback(null, status);
+
+});
+
+worker.expose('scrape', function(url, model, options, callback) {
+
+  api.scrape(url, model, options, function(err, data) {
+
+    if(err) {
+      return callback(err);
+    }
+
+    return callback(null, data);
+
+  });
 
 });
