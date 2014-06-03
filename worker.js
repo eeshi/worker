@@ -5,8 +5,12 @@ var PORT = process.env['PORT'];
 var status = true; // Available
 
 var rep = axon.socket('rep');
-var server = new rpc.Server(rep);
+var worker = new rpc.Server(rep);
 
 rep.bind(PORT);
 
+worker.expose('check status', function(callback) {
 
+  callback(null, status);
+
+});
