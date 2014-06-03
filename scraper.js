@@ -1,6 +1,6 @@
 var MongoClient = require('mongodb').MongoClient;
 var api = require('./api.js');
-var models = require('./models.json');
+var models = require('./sources.json');
 
 for (var i = models.length - 1; i >= 0; i--) {
   scrapeModel(models[i]);

@@ -39,3 +39,7 @@ node_modules
 
 ## Test files
 test
+
+
+## Worker's specifics. !TODO: remove after moving it to eeshi/supervisor
+sources.json

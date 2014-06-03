@@ -1,6 +1,6 @@
 var MongoClient = require('mongodb').MongoClient;
 var api = require('./api.js');
-var models = require('./models.json');
+var models = require('./sources.json');
 
 models.forEach(function(item, i, arr) {
   crawlLinks(item, i, arr)
