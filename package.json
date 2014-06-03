@@ -1,6 +1,6 @@
 {
   "name": "workers",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "eeshi workers to scrape sites",
   "main": "app.js",
   "repository": {
