@@ -19,12 +19,15 @@ worker.expose('check status', function(callback) {
 
 worker.expose('scrape', function(url, model, options, callback) {
 
+  status = false; // Busy
+
   api.scrape(url, model, options, function(err, data) {
 
     if(err) {
       return callback(err);
     }
 
+    status = true // Avaiable again :D
     return callback(null, data);
 
   });
