@@ -4,7 +4,7 @@ var axon = require('axon');
 var api = require('./api');
 
 var PORT = process.env['PORT'];
-var status = true; // Available
+var available = true;
 
 var rep = axon.socket('rep');
 var worker = new rpc.Server(rep);
@@ -13,13 +13,13 @@ rep.bind(PORT);
 
 worker.expose('check status', function(callback) {
 
-  callback(null, status);
+  callback(null, available);
 
 });
 
 worker.expose('scrape', function(url, model, options, callback) {
 
-  status = false; // Busy
+  available = false;
 
   api.scrape(url, model, options, function(err, data) {
 
@@ -27,7 +27,7 @@ worker.expose('scrape', function(url, model, options, callback) {
       return callback(err);
     }
 
-    status = true // Avaiable again :D
+    available = true
     return callback(null, data);
 
   });
